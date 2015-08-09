@@ -17,13 +17,15 @@ def getHoldings(uri):
 	# get the first year 
 	firstYear = jsonResponse['holdings'][0]['marcHoldings'][0]['spans'][0]['start']['year']
 
+
 	#get the latest year
 
 	# first get the length of the holdings
 	length = len(jsonResponse['holdings'][0]['marcHoldings'][0]['spans'])
 
 	# then get the last year by the index from length
-	latestYear = jsonResponse['holdings'][0]['marcHoldings'][0]['spans'][length-1]['start']['year']
+	latestYearSpan = jsonResponse['holdings'][0]['marcHoldings'][0]['spans'][length-1]
+	latestYear = latestYearSpan['end']['year']
 
 	# make array for result
 	result = [firstYear, latestYear]
@@ -33,6 +35,8 @@ def getHoldings(uri):
 	
 
 # test function 
-print getHoldings("https://search.lib.byu.edu/green/byu/record/lee.383397.json")
+#print getHoldings("https://search.lib.byu.edu/green/byu/record/lee.383397.json")
+print getHoldings("https://search.lib.byu.edu/green/byu/record/lee.633102.json")
+print getHoldings("https://search.lib.byu.edu/green/byu/record/lee.1586992.json")
 
 
